@@ -8,31 +8,25 @@
 import Foundation
 
 class EntryViewModel {
-    public struct Input {
-    }
+    var router: EntryRouter?
 
-    public struct Output {
-    }
+    func getGreetingInfo(for date: Date = Date()) -> GreetingInfo {
+        let hour = Calendar.current.component(.hour, from: date)
 
-    public var input = Input()
-    public var output: Output = Output()
-
-    var router: EntryRouter!
-
-    var onGreetingUpdated: ((String) -> Void)?
-
-    func loadGreeting() {
-        let hour = Calendar.current.component(.hour, from: Date())
-
-        print("Local time is \(hour)")
-
-        let greeting: String
         switch hour {
-        case 5 ..< 12: greeting = "Good morning!"
-        case 12 ..< 17: greeting = "Good afternoon!"
-        case 17 ..< 22: greeting = "Good evening!"
-        default: greeting = "Time to rest"
+        case 5 ..< 12:
+            return GreetingInfo(greeting: "Good morning!", imageName: "morning")
+        case 12 ..< 17:
+            return GreetingInfo(greeting: "Good afternoon!", imageName: "afternoon")
+        case 17 ..< 22:
+            return GreetingInfo(greeting: "Good evening!", imageName: "evening")
+        default:
+            return GreetingInfo(greeting: "Time to rest", imageName: "night")
         }
-        onGreetingUpdated?(greeting)
     }
+}
+
+struct GreetingInfo {
+    let greeting: String
+    let imageName: String
 }

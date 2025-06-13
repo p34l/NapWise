@@ -17,9 +17,9 @@ class RoundedTabBar: UITabBar {
         let yOffset: CGFloat = -20
 
         customBackgroundView.frame = CGRect(x: 0, y: yOffset, width: bounds.width, height: height)
-        customBackgroundView.backgroundColor = UIColor(named: "TabBarBackgroundColor")
+        customBackgroundView.backgroundColor = UIColor(named: "TabBarСolor")
 
-        customBackgroundView.layer.cornerRadius = 16
+        customBackgroundView.layer.cornerRadius = 24
         customBackgroundView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         customBackgroundView.layer.masksToBounds = true
 
@@ -27,10 +27,11 @@ class RoundedTabBar: UITabBar {
             insertSubview(customBackgroundView, at: 0)
         }
 
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.1
-        layer.shadowOffset = CGSize(width: 0, height: -2)
-        layer.shadowRadius = 8
+        customBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        customBackgroundView.layer.shadowOpacity = 0.15
+        customBackgroundView.layer.shadowOffset = CGSize(width: 0, height: -4)
+        customBackgroundView.layer.shadowRadius = 10
+        customBackgroundView.layer.masksToBounds = false
     }
 }
 
@@ -50,6 +51,6 @@ class MainTabBarController: UITabBarController {
         tabBar.barTintColor = UIColor(named: "TabBarBackground")
         tabBar.tintColor = UIColor.white
         tabBar.unselectedItemTintColor = UIColor.lightGray
-        tabBar.isTranslucent = false
+        tabBar.isTranslucent = true
     }
 }
